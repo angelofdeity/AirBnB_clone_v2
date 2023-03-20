@@ -142,10 +142,9 @@ class HBNBCommand(cmd.Cmd):
                 except ValueError:
                     continue
             parameters[k] = v
-        new_instance = HBNBCommand.classes[active_cl](**parameters)
-        print(new_instance.id)
-        storage.new(new_instance)
-        storage.save()
+        new = HBNBCommand.classes[active_cl](**parameters)
+        new.save()
+        print(new.id)
 
     def help_create(self):
         """ Help information for the create method """
