@@ -73,11 +73,7 @@ class HBNBCommand(cmd.Cmd):
                 pline = pline[2].strip()  # pline is now str
                 if pline:
                     # check for *args or **kwargs
-<<<<<<< HEAD
-                    if pline[0] == '{' and pline[-1] =='}'\
-=======
                     if pline[0] == '{' and pline[-1] == '}'\
->>>>>>> master
                             and type(eval(pline)) is dict:
                         _args = pline
                     else:
@@ -146,16 +142,9 @@ class HBNBCommand(cmd.Cmd):
                 except ValueError:
                     continue
             parameters[k] = v
-<<<<<<< HEAD
-        new_instance = HBNBCommand.classes[active_cl](**parameters)
-        print(new_instance.id)
-        storage.new(new_instance)
-        storage.save()
-=======
         new = HBNBCommand.classes[active_cl](**parameters)
         new.save()
         print(new.id)
->>>>>>> master
 
     def help_create(self):
         """ Help information for the create method """
