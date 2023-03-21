@@ -52,12 +52,18 @@ class BaseModel:
     def to_dict(self):
         """Convert instance into dict format"""
         dictionary = {}
-        dictionary.update(self.__dict__)
-        # dictionary['created_at'] = self.created_at.isoformat()
-        # dictionary['updated_at'] = self.updated_at.isoformat()
-        if '_sa_instance_state' in dictionary:
-            del dictionary['_sa_instance_state']
-        return dictionary
+        if HBNB_TYPE_STORAGE == 'db':
+            dictionary = self.__dict__.copy()
+            if '_sa_instance_state' in self.__dict__:
+                del dictionary['_sa_instance_state']
+            return dictionary
+        else:
+            for key, value in self.__dict__.items():
+                if key == 'created_at' or key == 'updated_at':
+                    value = value.isoformat()
+                dictionary[key] = value
+            dictionary['__class__'] = type(self).__name__
+            return dictionary
 
     def delete(self):
         """delete the current instance from the storage"""
