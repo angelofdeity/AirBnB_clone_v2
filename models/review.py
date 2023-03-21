@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """ Review module for the HBNB project """
 from .base_model import BaseModel
-from . import HBNB_TYPE_STORAGE
 from .base_model import Base
 
 
