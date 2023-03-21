@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 """ State Module for HBNB project """
-from .base_model import Base, BaseModel
+from .base_model import BaseModel
 from sqlalchemy.orm import declarative_base
 from sqlalchemy import Column, String, DateTime
 from sqlalchemy.orm import relationship
-from .engine.db_storage import HBNB_TYPE_STORAGE
+from . import HBNB_TYPE_STORAGE
+from .base_model import Base
 
 
 class State(BaseModel, Base):

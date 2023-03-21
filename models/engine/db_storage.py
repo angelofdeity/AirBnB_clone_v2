@@ -11,7 +11,6 @@ HBNB_MYSQL_PWD = getenv('HBNB_MYSQL_PWD')
 HBNB_MYSQL_HOST = getenv('HBNB_MYSQL_HOST')
 HBNB_MYSQL_DB = getenv('HBNB_MYSQL_DB')
 HBNB_MYSQL_PORT = getenv('HBNB_MYSQL_PORT')
-HBNB_TYPE_STORAGE = getenv('HBNB_TYPE_STORAGE')
 HBNB_ENV = 'dev'
 
 
@@ -39,14 +38,14 @@ class DBStorage:
 
         result_dict = {}
 
-        for model in [User, State, City, Place, Review, Amenity]:
+        for model in [User, State, City, Place, Amenity]:
             if cls is not None and model != cls:
                 continue
             query_results = self.__session.query(model).all()
             for obj in query_results:
                 key = f"{type(obj).__name__}.{obj.id}"
                 result_dict[key] = obj
-
+        print("r", result_dict)
         return result_dict
 
     def new(self, obj):
