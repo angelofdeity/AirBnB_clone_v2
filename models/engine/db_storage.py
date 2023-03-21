@@ -45,7 +45,6 @@ class DBStorage:
             for obj in query_results:
                 key = f"{type(obj).__name__}.{obj.id}"
                 result_dict[key] = obj
-        print("r", result_dict)
         return result_dict
 
     def new(self, obj):
