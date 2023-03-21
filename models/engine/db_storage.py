@@ -2,14 +2,8 @@
 """This module defines a class to manage db storage for hbnb clone"""
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
-from os import getenv
 from models.base_model import Base, BaseModel
-from models.user import User
-from models.place import Place
-from models.state import State
-from models.city import City
-from models.amenity import Amenity
-from models.review import Review
+from os import getenv
 
 
 HBNB_MYSQL_USER = getenv('HBNB_MYSQL_USER')
@@ -35,11 +29,25 @@ class DBStorage:
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
-        """Returns a dictionary of models currently in storage"""
-        if cls is None:
-            return self.__session.query(User, State, City, Amenity, Place, Review).all()
-        else:
-            return self.__session.query(cls).all()
+        """Returns a dictionary of all instances of a given class"""
+        from models.user import User
+        from models.state import State
+        from models.city import City
+        from models.place import Place
+        from models.review import Review
+        from models.amenity import Amenity
+
+        result_dict = {}
+
+        for model in [User, State, City, Place]:
+            if cls is not None and model != cls:
+                continue
+            query_results = self.__session.query(model).all()
+            for obj in query_results:
+                key = f"{type(obj).__name__}.{obj.id}"
+                result_dict[key] = obj
+
+        return result_dict
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
