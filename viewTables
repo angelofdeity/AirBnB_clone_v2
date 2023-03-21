@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+echo "Viewing tables in hbnb_dev_db"
+echo ""
+echo "States"
+echo ""
+echo 'SELECT * FROM states\G' | mysql -uhbnb_dev hbnb_dev_db
+echo ""
+echo "Cities"
+echo ""
+echo 'SELECT * FROM cities\G' | mysql -uhbnb_dev  hbnb_dev_db
+echo ""
+echo "Users"
+echo ""
+echo 'SELECT * FROM users\G' | mysql -uhbnb_dev hbnb_dev_db
+echo ""
+echo "************Places***************"
+echo ""
+echo 'SELECT * FROM places\G' | mysql -uhbnb_dev hbnb_dev_db

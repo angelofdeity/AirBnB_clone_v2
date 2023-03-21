@@ -2,7 +2,7 @@
 """This module defines a class to manage db storage for hbnb clone"""
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
-from models.base_model import Base, BaseModel
+from ..base_model import Base, BaseModel
 from os import getenv
 
 
@@ -16,7 +16,7 @@ HBNB_ENV = 'dev'
 
 
 class DBStorage:
-    """This class manages storage of hbnb models in database"""
+    """This class manages storage of hbnb . in database"""
     __engine = None
     __session = None
 
@@ -30,12 +30,12 @@ class DBStorage:
 
     def all(self, cls=None):
         """Returns a dictionary of all instances of a given class"""
-        from models.user import User
-        from models.state import State
-        from models.city import City
-        from models.place import Place
-        from models.review import Review
-        from models.amenity import Amenity
+        from ..user import User
+        from ..state import State
+        from ..city import City
+        from ..place import Place
+        from ..review import Review
+        from ..amenity import Amenity
 
         result_dict = {}
 
@@ -64,6 +64,13 @@ class DBStorage:
 
     def reload(self):
         """Loads storage dictionary from file"""
+        from ..user import User
+        from ..state import State
+        from ..city import City
+        from ..place import Place
+        from ..review import Review
+        from ..amenity import Amenity
+
         Base.metadata.create_all(self.__engine)
         session_factory = sessionmaker(
             bind=self.__engine, expire_on_commit=False)

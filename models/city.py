@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ City Module for HBNB project """
-from models.base_model import Base, BaseModel
+from .base_model import Base, BaseModel
 from sqlalchemy import Column, String, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 

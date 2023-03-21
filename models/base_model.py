@@ -41,7 +41,7 @@ class BaseModel:
 
     def save(self):
         """Updates updated_at with current time when instance is changed"""
-        from models import storage
+        from . import storage
         self.updated_at = datetime.now()
         storage.new(self)
         storage.save()
@@ -56,9 +56,11 @@ class BaseModel:
         dictionary['updated_at'] = self.updated_at.isoformat()
         if '_sa_instance_state' in dictionary:
             del dictionary['_sa_instance_state']
+        if '__class__' in dictionary:
+            del dictionary['__class__']
         return dictionary
 
     def delete(self):
         """delete the current instance from the storage"""
-        from models import storage
+        from . import storage
         storage.delete(self)
