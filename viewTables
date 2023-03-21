@@ -16,3 +16,11 @@ echo ""
 echo "************Places***************"
 echo ""
 echo 'SELECT * FROM places\G' | mysql -uhbnb_dev hbnb_dev_db
+echo ""
+echo "************Amenities***************"
+echo ""
+echo 'SELECT * FROM amenities\G' | mysql -uhbnb_dev hbnb_dev_db
+echo ""
+echo "************Amenities***************"
+echo ""
+echo 'SELECT * FROM place_amenity\G' | mysql -uhbnb_dev hbnb_dev_db
