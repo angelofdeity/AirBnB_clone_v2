@@ -10,6 +10,7 @@ from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.review import Review
+import shlex
 
 
 class HBNBCommand(cmd.Cmd):
@@ -116,6 +117,7 @@ class HBNBCommand(cmd.Cmd):
         """ Create an object of any class"""
         parameters = {}
         args = arg.split()
+
         if len(args) == 0:
             print("** class name missing **")
             return
@@ -124,23 +126,14 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
         for param in args[1:]:
-            if '=' not in param:
-                continue
-            k, v = param.split('=', 1)
-            if v[0] == '"' and v[-1] == '"':
-                v = v[1:-1].replace('_', ' ')
-
-            elif '.' in v:
-                try:
-                    v = float(v)
-                except ValueError:
-                    continue
+            key, value = param.split('=')
+            print(key, value)
+            if value[0] == '"':
+                value = value[1:-1]
             else:
-                try:
-                    v = int(v)
-                except ValueError:
-                    continue
-            parameters[k] = v
+                value = self.types[key](value)
+            parameters[key] = value
+
         new = HBNBCommand.classes[active_cl](**parameters)
         new.save()
         print(new.id)
