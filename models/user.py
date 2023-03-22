@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 """This module defines a class User"""
-from .base_model import BaseModel
+from .base_model import Base, BaseModel
 from .place import Place
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import relationship
 from . import HBNB_TYPE_STORAGE
 from .base_model import Base
+from .review import Review
 
 
 class User(BaseModel, Base):

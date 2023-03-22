@@ -38,7 +38,7 @@ class DBStorage:
 
         result_dict = {}
 
-        for model in [User, State, City, Place, Amenity]:
+        for model in [User, State, City, Place, Amenity, Review]:
             if cls is not None and model != cls:
                 continue
             query_results = self.__session.query(model).all()

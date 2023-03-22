@@ -25,7 +25,8 @@ class Place(BaseModel, Base):
     if HBNB_TYPE_STORAGE == 'db':
         amenities = relationship(
             "Amenity", secondary="place_amenity", back_populates="place_amenities", viewonly=False)
-        reviews = relationship('Review', cascade='all, delete', back_ref='place')
+        reviews = relationship(
+            'Review', cascade='all, delete', backref='place')
     else:
         @property
         def amenities(self):
@@ -53,6 +54,7 @@ class Place(BaseModel, Base):
                 if review.place_id == self.id:
                     reviews_list.append(review)
             return reviews_list
+
     def __init__(self, *args, **kwargs):
         """initializes place"""
         super().__init__(*args, **kwargs)
