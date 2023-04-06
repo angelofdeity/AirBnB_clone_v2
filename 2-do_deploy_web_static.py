@@ -16,7 +16,7 @@ def do_deploy(archive_path):
     archive = archive_path.lstrip('versions/')
     run('mkdir -p {}'.format(filename))
     # run('mkdir /tmp/versions')
-    put('{}', "/tmp/".format(archive_path))
+    put('{}'.format(archive_path), "/tmp/")
     run('tar -xzf /tmp/{} -C {}'.format(archive, filename))
     run('mv {}/web_static/* {}'.format(filename, filename))
     run('rm -rf {}/web_static/'.format(filename))
