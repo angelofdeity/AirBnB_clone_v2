@@ -11,15 +11,16 @@ def do_deploy(archive_path):
     """This function distributes an archive to web servers"""
     if (os.path.exists(archive_path) is False):
         return False
-    filename = f'/data/web_static/releases/{archive_path.strip(".tgz")}'
+    filename = '/data/web_static/releases/{}'.format(
+        archive_path.strip(".tgz"))
     archive = archive_path.lstrip('versions/')
-    run(f'mkdir -p {filename}')
+    run('mkdir -p {}'.format(filename))
     # run('mkdir /tmp/versions')
-    put(f'{archive_path}', "/tmp/")
-    run(f'tar -xzf /tmp/{archive} -C {filename}')
-    run(f'mv {filename}/web_static/* {filename}')
-    run(f'rm -rf {filename}/web_static/')
-    run(f'rm /tmp/{archive}')
+    put('{}', "/tmp/".format(archive_path))
+    run('tar -xzf /tmp/{} -C {}'.format(archive, filename))
+    run('mv {}/web_static/* {}'.format(filename, filename))
+    run('rm -rf {}/web_static/'.format(filename))
+    run('rm /tmp/{}'.format(archive))
     run('rm /data/web_static/current')
-    run(f'ln -sf {filename} /data/web_static/current')
+    run('ln -sf {} /data/web_static/current'.format(filename))
     return True

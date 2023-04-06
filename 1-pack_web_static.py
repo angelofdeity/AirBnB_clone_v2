@@ -16,8 +16,8 @@ def do_pack():
         if not os.path.exists('versions'):
             local('mkdir versions')
         date = datetime.now().strftime("%Y%m%d%H%M%S")
-        file_name = f"versions/web_static_{date}.tgz"
-        local(f"tar -cvzf {file_name} ./web_static")
+        file_name = "versions/web_static_{}.tgz".format(date)
+        local("tar -cvzf {} ./web_static".format(file_name))
         return file_name
     except Exception:
         return None
