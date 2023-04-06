@@ -44,6 +44,7 @@ def do_deploy(archive_path):
     return True
 
 def deploy():
+    """Archive and Deploy to servers"""
     archive_path = do_pack()
     return do_deploy(archive_path) if archive_path else False
     
