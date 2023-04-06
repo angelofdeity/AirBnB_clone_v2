@@ -44,7 +44,6 @@ def do_deploy(archive_path):
     return True
 
 def deploy():
-    if not new_archive := do_pack():
-        return False
-    return do_deploy(new_archive)
+    archive_path = do_pack()
+    return do_deploy(archive_path) if archive_path else False
     
