@@ -2,12 +2,12 @@
 # This script sets up your web servers for the deployment of web_static
 sudo apt-get -y update
 sudo apt-get install -y nginx
-sudo mkdir -p ~/data/web_static/releases/test/
-sudo mkdir -p ~/data/web_static/shared/
+sudo mkdir -p /data/web_static/releases/test/ /data/web_static/shared/
 sudo echo "Holberton School" | sudo tee /data/web_static/releases/test/index.html
 sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 sudo chown -R ubuntu:ubuntu /data/
-printf %s "server {
+sudo chown -R "$USER":"$USER" /etc/nginx/
+sudo printf %s "server {
     listen 80 default_server;
     listen [::]:80 default_server;
     add_header X-Served-By $HOSTNAME;
