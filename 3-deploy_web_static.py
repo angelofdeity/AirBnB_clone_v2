@@ -11,6 +11,7 @@ import os
 env.hosts = ['54.208.84.31', '54.172.141.180']
 env.user = "ubuntu"
 
+
 def do_pack():
     """This function generates a .tgz archive from the contents of the
     web_static folder of AirBnB Clone v2, using the function do_pack.
@@ -24,6 +25,7 @@ def do_pack():
         return file_name
     except Exception:
         return None
+
 
 def do_deploy(archive_path):
     """This function distributes an archive to web servers"""
@@ -43,8 +45,8 @@ def do_deploy(archive_path):
     run('ln -sf {} /data/web_static/current'.format(filename))
     return True
 
+
 def deploy():
     """Archive and Deploy to servers"""
     archive_path = do_pack()
     return do_deploy(archive_path) if archive_path else False
-    
