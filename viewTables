@@ -1,26 +1,27 @@
 #!/usr/bin/env bash
+echo 'INSERT INTO `places` VALUES ("421a55f1-7d82-45d9-b54c-a76916479545", "2017-03-25 19:42:40","2017-03-25 19:42:40","521a55f4-7d82-47d9-b54c-a76916479545","My little house", 4, 2, 10, 300, "37.773972", "-122.431297");' | mysql -uhbnb_dev -phbnb_dev_pwd hbnb_dev_db
 echo "Viewing tables in hbnb_dev_db"
 echo ""
 echo "States"
 echo ""
-echo 'SELECT * FROM states\G' | mysql -uhbnb_dev hbnb_dev_db
+echo 'SELECT * FROM states\G' | mysql -uhbnb_dev -phbnb_dev_pwd hbnb_dev_db
 echo ""
 echo "Cities"
 echo ""
-echo 'SELECT * FROM cities\G' | mysql -uhbnb_dev  hbnb_dev_db
+echo 'SELECT * FROM cities\G' | mysql -uhbnb_dev -phbnb_dev_pwd  hbnb_dev_db
 echo ""
 echo "Users"
 echo ""
-echo 'SELECT * FROM users\G' | mysql -uhbnb_dev hbnb_dev_db
+echo 'SELECT * FROM users\G' | mysql -uhbnb_dev -phbnb_dev_pwd hbnb_dev_db
 echo ""
 echo "************Places***************"
 echo ""
-echo 'SELECT * FROM places\G' | mysql -uhbnb_dev hbnb_dev_db
+echo 'SELECT * FROM places\G' | mysql -uhbnb_dev -phbnb_dev_pwd hbnb_dev_db
 echo ""
 echo "************Amenities***************"
 echo ""
-echo 'SELECT * FROM amenities\G' | mysql -uhbnb_dev hbnb_dev_db
+echo 'SELECT * FROM amenities\G' | mysql -uhbnb_dev -phbnb_dev_pwd hbnb_dev_db
 echo ""
 echo "************Reviews***************"
 echo ""
-echo 'SELECT * FROM reviews\G' | mysql -uhbnb_dev hbnb_dev_db
+echo 'SELECT * FROM reviews\G' | mysql -uhbnb_dev -phbnb_dev_pwd hbnb_dev_db

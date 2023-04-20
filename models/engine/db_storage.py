@@ -38,7 +38,6 @@ class DBStorage:
         from ..amenity import Amenity
 
         result_dict = {}
-
         for model in [User, State, City, Place, Amenity, Review]:
             if cls is not None and model != cls:
                 continue
