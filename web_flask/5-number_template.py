@@ -43,9 +43,5 @@ def show_number_html(n):
 
 
 if __name__ == '__main__':
-    params = {'host': '0.0.0.0', 'port': 5000}
-    for func in [hello, hbnb,
-                 show_c,
-                 show_number,
-                 show_number_html]:
-        func(**params)
+    app.run(host='0.0.0.0', port=5000)
+

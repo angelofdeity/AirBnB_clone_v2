@@ -18,8 +18,8 @@ class State(BaseModel, Base):
     else:
         @property
         def cities(self):
-            from models.city import City
-            from models.storage import storage
+            from .city import City
+            from . import storage
 
             city_list = []
             for city in storage.all(City).values():

@@ -30,7 +30,4 @@ def show_python(text="is_cool"):
 
 
 if __name__ == '__main__':
-    hello(host='0.0.0.0', port=5000)
-    hbnb(host='0.0.0.0', port=5000)
-    show_c(host='0.0.0.0', port=5000)
-    show_python(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000)

@@ -14,6 +14,7 @@ HBNB_MYSQL_PORT = getenv('HBNB_MYSQL_PORT')
 HBNB_ENV = 'dev'
 
 
+
 class DBStorage:
     """This class manages storage of hbnb . in database"""
     __engine = None
@@ -74,3 +75,8 @@ class DBStorage:
             bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(session_factory)
         self.__session = Session()
+
+    def close(self):
+        """calls remove() method on the private session attribute (self.__session)"""
+        self.reload()
+        self.__session.close()

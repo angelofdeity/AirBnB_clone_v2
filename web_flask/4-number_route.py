@@ -36,8 +36,4 @@ def show_number(n):
 
 
 if __name__ == '__main__':
-    hello(host='0.0.0.0', port=5000)
-    hbnb(host='0.0.0.0', port=5000)
-    show_c(host='0.0.0.0', port=5000)
-    show_python(host='0.0.0.0', port=5000)
-    show_number(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000)
