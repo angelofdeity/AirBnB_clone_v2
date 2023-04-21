@@ -19,20 +19,20 @@ def hbnb():
 @app.route("/c/<text>", strict_slashes=False)
 def show_c(text):
     """ This function returns a string"""
-    return f'c {text.replace("_", " ")}'
+    return 'c {}'.format(text.replace("_", " "))
 
 
-@app.route("/python/", defaults={"text": "is cool"}, strict_slashes=False)
+@app.route("/python/", strict_slashes=False)
 @app.route("/python/<text>", strict_slashes=False)
-def show_python(text):
+def show_python(text="is_cool"):
     """ This function returns a string"""
-    return f'python {text.replace("_", " ")}'
+    return 'python {}'.format(text.replace("_", " "))
 
 
 @app.route("/number/<int:n>", strict_slashes=False)
 def show_number(n):
     """ This function returns a string"""
-    return f"{n} is a number"
+    return "{} is a number".format(n)
 
 
 if __name__ == '__main__':

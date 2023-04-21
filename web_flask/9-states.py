@@ -8,10 +8,6 @@ from ..models.city import City
 from ..models import storage
 
 app = Flask(__name__)
-for state in storage.all(State).values():
-    print(state.id)
-for city in storage.all(City):
-    print(city)
 
 @app.teardown_appcontext
 def shutdown_session(exception=None):
@@ -26,4 +22,4 @@ def show_states(id=None):
     return render_template('9-states.html', states=states, cities=cities, id=id, state_name_ids=state_name_ids)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000)
