@@ -7,22 +7,22 @@
 
 <body>
     <H1>States</H1>
+    {% for state in states | sort(attribute="name")%}
     <UL>
-        {% for state in states | sort(attribute="name")%}
         <LI>
             {{ state.id }}: <B>{{ state.name }}</B>
+            {% for city in cities | sort(attribute="name") -%}
+            {% if state.id == city.state_id %}
             <UL>
-                {% for city in cities | sort(attribute="name") -%}
-                {% if state.id == city.state_id %}
                 <LI>
                     {{ city.id }}: <B>{{ city.name }}</B>
                 </LI>
-                {% endif %}
-                {%- endfor %}
             </UL>
+            {% endif %}
+            {%- endfor %}
         </LI>
-        {% endfor %}
     </UL>
+    {% endfor %}
 </body>
 
 </html>
