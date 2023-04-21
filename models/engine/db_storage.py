@@ -43,13 +43,19 @@ class DBStorage:
                 continue
             query_results = self.__session.query(model).all()
             for obj in query_results:
-                key = f"{type(obj).__name__}.{obj.id}"
+                key = "{}.{}".format(type(obj).__name__, obj.id)
                 result_dict[key] = obj
         return result_dict
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
-        self.__session.add(obj)
+        if obj:
+            try:
+                self.__session.add(obj)
+                self.__session.flush()
+                self.__session.refresh(obj)
+            except Exception:
+                self.__session.rollback()
 
     def save(self):
         """Saves storage dictionary to file"""
@@ -72,8 +78,7 @@ class DBStorage:
         Base.metadata.create_all(self.__engine)
         session_factory = sessionmaker(
             bind=self.__engine, expire_on_commit=False)
-        Session = scoped_session(session_factory)
-        self.__session = Session()
+        self.__session = scoped_session(session_factory)()
 
     def close(self):
         """calls remove() method on the private session attribute (self.__session)"""
