@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 from ..base_model import Base, BaseModel
 from os import getenv
-
+from sqlalchemy import create_engine, inspect
 
 HBNB_MYSQL_USER = getenv('HBNB_MYSQL_USER')
 HBNB_MYSQL_PWD = getenv('HBNB_MYSQL_PWD')
@@ -25,6 +25,14 @@ class DBStorage:
         self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'
                                       .format(HBNB_MYSQL_USER, HBNB_MYSQL_PWD, HBNB_MYSQL_HOST, HBNB_MYSQL_DB),
                                       pool_pre_ping=True)
+        # inspector = inspect(self.__engine)
+        # columns = inspector.get_columns('cities')
+        # print('schema of cities table:')
+        # print(columns)
+        # for column in columns:
+            # print(column['name'], column['type'], column['nullable'], column['primary_key'])
+
+
         if HBNB_ENV == 'test':
             Base.metadata.drop_all(self.__engine)
 
