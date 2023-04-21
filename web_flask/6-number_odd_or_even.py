@@ -20,14 +20,14 @@ def hbnb():
 @app.route("/c/<text>", strict_slashes=False)
 def show_c(text):
     """ This function returns a string"""
-    return 'c {}'.format(text.replace("_", " "))
+    return 'C {}'.format(text.replace("_", " "))
 
 
 @app.route("/python/", strict_slashes=False)
 @app.route("/python/<text>", strict_slashes=False)
 def show_python(text="is_cool"):
     """ This function returns a string"""
-    return 'python {}'.format(text.replace("_", " "))
+    return 'Python {}'.format(text.replace("_", " "))
 
 
 @app.route("/number/<int:n>", strict_slashes=False)
