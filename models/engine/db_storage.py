@@ -14,7 +14,6 @@ HBNB_MYSQL_PORT = getenv('HBNB_MYSQL_PORT')
 HBNB_ENV = 'dev'
 
 
-
 class DBStorage:
     """This class manages storage of hbnb . in database"""
     __engine = None
@@ -23,16 +22,9 @@ class DBStorage:
     def __init__(self):
         """initializes the database"""
         self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'
-                                      .format(HBNB_MYSQL_USER, HBNB_MYSQL_PWD, HBNB_MYSQL_HOST, HBNB_MYSQL_DB),
+                                      .format(HBNB_MYSQL_USER, HBNB_MYSQL_PWD,
+                                              HBNB_MYSQL_HOST, HBNB_MYSQL_DB),
                                       pool_pre_ping=True)
-        # inspector = inspect(self.__engine)
-        # columns = inspector.get_columns('cities')
-        # print('schema of cities table:')
-        # print(columns)
-        # for column in columns:
-            # print(column['name'], column['type'], column['nullable'], column['primary_key'])
-
-
         if HBNB_ENV == 'test':
             Base.metadata.drop_all(self.__engine)
 
@@ -89,6 +81,6 @@ class DBStorage:
         self.__session = scoped_session(session_factory)()
 
     def close(self):
-        """calls remove() method on the private session attribute (self.__session)"""
+        """calls remove() method on the private
+        session attribute (self.__session)"""
         self.__session.close()
-
