@@ -5,7 +5,10 @@ from datetime import datetime
 from sqlalchemy import Column, String, DateTime
 from . import HBNB_TYPE_STORAGE
 from sqlalchemy.ext.declarative import declarative_base
-Base = declarative_base()
+if HBNB_TYPE_STORAGE == 'db':
+    Base = declarative_base()
+else:
+    Base = object
 
 
 class BaseModel:
@@ -22,7 +25,7 @@ class BaseModel:
             for key, value in kwargs.items():
                 if key in ['created_at', 'updated_at']:
                     value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
-                if key != '__class__':
+                if key not in ['__class__']:
                     setattr(self, key, value)
 
     def __str__(self):
