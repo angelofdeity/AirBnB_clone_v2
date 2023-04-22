@@ -228,3 +228,9 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2023-04-22  9:27:32
+-- easy way to generate cities based on states
+INSERT INTO cities (id, created_at, updated_at, state_id, name)
+SELECT CONCAT('city', UUID_SHORT()), NOW(), NOW(), states.id, CONCAT('City in ', states.name)
+FROM states
+ORDER BY RAND()
+LIMIT 15;
